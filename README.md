@@ -8,7 +8,7 @@ This repo captures streaming audio from Chrome tabs (e.g. [stream.directv.com](h
 
 ---
 
-## 🔧 Features
+## Features
 
 * 🧠 Real-time transcription with OpenAI Whisper (via FastAPI)
 * 🔊 Audio capture using macOS Loopback Audio and `ffmpeg`
@@ -18,7 +18,7 @@ This repo captures streaming audio from Chrome tabs (e.g. [stream.directv.com](h
 
 ---
 
-## 📦 Requirements
+## Requirements
 
 * macOS (tested on Apple Silicon)
 * [Loopback Audio](https://rogueamoeba.com/loopback/) (or similar virtual audio router)
@@ -115,14 +115,3 @@ README.md          # You are here
 * [ ] Auto-tagging and show detection
 * [ ] Full-text search or LLM summarization
 
----
-
-## 🧠 Author
-
-Built by [@mypolopony](https://github.com/mypolopony)
-
----
-
-## 🪪 License
-
-MIT
