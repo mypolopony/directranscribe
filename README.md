@@ -154,6 +154,47 @@ Sun May 25 04:53:34 PDT 2025
  our cow, now.
 ```
 
+## Another example
+
+![text](img/another_example.png)
+
+```
+---
+Sun May 25 06:40:15 PDT 2025
+ Right before baking you take the dough and you make a couple 
+ of slashes or scores on the top of the bread now You can use
+  a very sharp knife to do this But why not use the right tool
+   for the job and that tool is a baker's lawn and Adam's here 
+   He's gonna tell us more exactly as he said you can get away 
+   with a paring knife You can get away with the utility knife 
+   if you want but the right tool is a baker's lawn Let's back 
+   up for a second the reason you do this is because when bread 
+   bakes the moisture in the
+---
+Sun May 25 06:40:53 PDT 2025
+ your ruptures, it can cause mis-shape and load. If you make 
+ those slashes scoring it, you control the weak spot where 
+ the moisture escapes. Engineering the vents. Yeah, you're 
+ engineering the vents, exactly. That's the perfect way to 
+ put it. And this loaf shows that. There were a couple of 
+ scores. And so it was predictable how the bread was going to 
+ expand. Another reason to do it is to put ears in a loaf. 
+ That's very typical in a baguette. That's the little flap 
+ that sticks up. And that's the mark of a well-made baguette.
+---
+Sun May 25 06:41:33 PDT 2025
+ They're great. Yeah, you'd expect to buy that but you can 
+ actually do that at home. You can do that at home if you h
+ ave the right Lomb and that's what we're going to talk 
+ about. Lomb is French for Blade. We tested seven 
+ breadloms. They were priced between seven dollars and a 
+ little over 29 dollars and testers use them to score 10 
+ loaves of penneleve and eight baguettes and then the 
+ baguettes in particular they put in those slashes that 
+ will make the ears. Of course. These are basically raised
+---
+```
+
 ## 🙏 Credits
 
 - [OpenAI Whisper](https://github.com/openai/whisper)
