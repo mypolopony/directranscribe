@@ -156,7 +156,7 @@ Sun May 25 04:53:34 PDT 2025
 
 ## Another example
 
-![text](img/another_example.png)
+![text](img/verysecure.png)
 
 ```
 ---
