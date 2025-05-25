@@ -134,7 +134,7 @@ sqlite3 transcripts.db "SELECT timestamp, label, transcript FROM transcripts ORD
 ## 📸 Example
 
 ![example](img/example.png)
-![example](img/example2.png)
+![example](img/another_example.png)
 ---
 
 ## 🙏 Credits
