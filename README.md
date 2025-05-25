@@ -117,12 +117,6 @@ README.md          # You are here
 
 ---
 
-## 🧠 Author
+## Example
 
-Built by [@mypolopony](https://github.com/mypolopony)
-
----
-
-## 🪪 License
-
-MIT
+![example](img/example.png)
