@@ -137,7 +137,7 @@ sqlite3 transcripts.db "SELECT timestamp, label, transcript FROM transcripts ORD
 ![example](img/another_example.png)
 ---
 
-## Text
+## Example Text
 
 ```
 Sun May 25 04:53:34 PDT 2025
