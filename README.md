@@ -50,7 +50,7 @@ Visit: [http://localhost:8000/docs](http://localhost:8000/docs) to test the Fast
 
 ---
 
-## 🎧 Live Audio Loop
+## Live Audio Loop
 
 Record from Chrome → transcribe → log every 30 seconds:
 
