@@ -1,2 +1,5 @@
 stream.html # Prototype
 .DS_Store
+transcripts.db
+chunk.wav
+__pycache__/
