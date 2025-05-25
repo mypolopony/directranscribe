@@ -163,13 +163,13 @@ Sun May 25 04:53:34 PDT 2025
 Sun May 25 06:40:15 PDT 2025
  Right before baking you take the dough and you make a couple 
  of slashes or scores on the top of the bread now You can use
-  a very sharp knife to do this But why not use the right tool
-   for the job and that tool is a baker's lawn and Adam's here 
-   He's gonna tell us more exactly as he said you can get away 
-   with a paring knife You can get away with the utility knife 
-   if you want but the right tool is a baker's lawn Let's back 
-   up for a second the reason you do this is because when bread 
-   bakes the moisture in the
+ a very sharp knife to do this But why not use the right tool
+ for the job and that tool is a baker's lawn and Adam's here 
+ He's gonna tell us more exactly as he said you can get away 
+ with a paring knife You can get away with the utility knife 
+ if you want but the right tool is a baker's lawn Let's back 
+ up for a second the reason you do this is because when bread 
+ bakes the moisture in the
 ---
 Sun May 25 06:40:53 PDT 2025
  your ruptures, it can cause mis-shape and load. If you make 
