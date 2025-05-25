@@ -141,13 +141,17 @@ sqlite3 transcripts.db "SELECT timestamp, label, transcript FROM transcripts ORD
 
 ```
 Sun May 25 04:53:34 PDT 2025
- we all work so hard. It's so funny how like the racing world and dairy farmers have so much 
- in common. I mean, I feel like we have a pit crew that helps run our farm. I mean, it takes 
- a bunch of people just like an Indie car driver does. You know, we're the fourth generation 
- raising the fifth generation. I have two daughters. So to be this is only the second time 
- two women have been milk presenters at the Indianapolis 500. So to be a role model and 
- help inspire our children. We're hoping for that and we're a robotic dairy. So we have 
- robots at milk our cows. So our cow.
+ We all work so hard. It's so funny how, like, the racing 
+ world and dairy farmers have so much in common. I mean, 
+ I feel like we have a pit crew that helps run our farm. I
+ mean, it takes a bunch of people just like an Indie car 
+ driver does. You know, we're the fourth generation raising 
+ the fifth generation. I have two daughters. So to be, this 
+ is only the second time two women have been milk presenters
+ at the Indianapolis 500. So to be a role model and help 
+ inspire our children. We're hoping for that and we're a 
+ robot dairy. So we have robots at milk our cows. So we're
+ our cow, now.
 ```
 
 ## 🙏 Credits
