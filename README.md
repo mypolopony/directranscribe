@@ -1,16 +1,16 @@
 # 📡 Directranscribe
 
-**Directranscribe** is a real-time transcription pipeline that captures audio from a Chrome browser tab, transcribes it using OpenAI’s Whisper model, and stores the results in a local SQLite database for later retrieval and analysis. It’s ideal for transcribing streamed content like webinars, meetings, or live TV.
+**Directranscribe** is a real-time transcription pipeline that captures audio from your system (e.g., a Chrome browser tab via Loopback on macOS), transcribes it using OpenAI’s Whisper model, and stores the results in a local SQLite database for later retrieval and analysis. It’s ideal for transcribing streamed content like webinars, meetings, or live TV using a command-line interface.
 
 ---
 
 ## 🔧 Features
 
-- 🎤 **Live Audio Capture** from Chrome tabs (via macOS Loopback + `ffmpeg`)
+- 🎤 **Live Audio Capture** from system audio (e.g., Chrome tabs via macOS Loopback + `ffmpeg`)
 - 🧠 **Real-Time Transcription** using Whisper via a FastAPI backend
 - 💾 **Local Persistence** with SQLite for searchable transcripts
-- 🧩 **Chrome Extension** for quick control and integration
-- 🔦 **Terminal log preview** via `transcript.log`
+- 命令行 **CLI Control** for starting and managing transcription
+- 🔦 **Terminal log preview** via `transcript.log` and direct terminal output
 - 🐳 **Dockerized** for easy setup and reproducibility
 
 ---
@@ -24,10 +24,10 @@ directranscribe/
 ├── img/                   # App icons and static assets
 ├── main.py                # Launcher for the full pipeline
 ├── save_to_db.py          # Handles saving transcription chunks
-├── background.js          # Chrome extension background script
-├── content.js             # Chrome extension tab content script
-├── manifest.json          # Chrome extension metadata
-├── stream.html            # Extension interface (popup or tab)
+├── background.js          # (Optional) Chrome extension background script
+├── content.js             # (Optional) Chrome extension tab content script
+├── manifest.json          # (Optional) Chrome extension metadata
+├── stream.html            # (Optional) Extension interface (popup or tab)
 ├── requirements.txt       # Python dependencies
 ├── Dockerfile             # Containerized setup
 └── README.md              # You’re here!
@@ -35,35 +35,52 @@ directranscribe/
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Quickstart (CLI Method)
 
-### 1. 🐳 Build & Run with Docker
+### 1. 🐳 Build & Run Dockerized Backend
 
+First, build and run the Docker container which hosts the FastAPI transcription backend:
 ```bash
 docker build -t directranscribe .
 docker run -p 8000:8000 directranscribe
 ```
+Keep this terminal window open as it runs the server.
 
 ### 2. 🔊 Set Up Loopback Audio (macOS)
 
-To capture browser audio:
+To capture audio from a specific application like Chrome:
+- Use a tool like [Loopback](https://rogueamoeba.com/loopback/) to create a virtual audio device.
+- Configure this virtual device to capture audio output from Google Chrome (or your desired audio source).
+- Set this virtual device as your system's default input, or identify its input index for `ffmpeg`. You can list devices with `ffmpeg -f avfoundation -list_devices true -i ""`. The CLI script below assumes it's device `:4`.
 
-- Use [Loopback](https://rogueamoeba.com/loopback/) to create a virtual device that includes Chrome output.
-- Set Chrome’s output to this virtual device.
-- Confirm with `ffmpeg` that you’re capturing correctly.
+### 3. 💾 Initialize Database (One-time)
 
-### 3. 🧩 Install Chrome Extension
+In a new terminal window, in the project directory, initialize the SQLite database if you haven't already:
+```bash
+sqlite3 transcripts.db < sql/0_init.sql
+```
+(If the table already exists, this command will show an error, which is fine.)
 
-- Load `manifest.json` as an **unpacked extension** in Chrome:
-  - Visit `chrome://extensions/`
-  - Enable **Developer Mode**
-  - Click **"Load unpacked"** and select the project root
+### 4. ▶️ Start Transcribing via CLI
 
-### 4. ▶️ Start Transcribing
-
-- Launch the FastAPI backend (`main.py`)
-- Use the extension to start capturing
-- Transcriptions will be displayed and saved to SQLite automatically
+In a new terminal window (different from the Docker backend and database initialization), navigate to the project directory and run the following script:
+```bash
+while true; do
+  echo "$(date)" >> transcript.log
+  # Adjust -i ":4" if your Loopback device has a different index
+  ffmpeg -f avfoundation -i ":4" -ac 1 -ar 16000 -t 30 -filter:a "volume=10dB" -y chunk.wav -loglevel quiet
+  curl -s -X POST http://localhost:8000/transcribe -F "file=@chunk.wav" \
+    | tee -a transcript.log \
+    | jq -r .transcript \
+    | python3 save_to_db.py "DirectTV" # Label for the transcript source
+  echo "---" >> transcript.log
+  rm chunk.wav # Clean up the temporary audio file
+done
+```
+- This script will record 30-second audio chunks, send them for transcription, print the transcript to the terminal, and save it to `transcript.log` and the database.
+- Press `Ctrl+C` to stop the script.
+- The `jq` command is used to extract the transcript text. Ensure `jq` is installed (`brew install jq` on macOS).
+- The `python3 save_to_db.py` script saves the transcript to the SQLite database.
 
 ---
 
@@ -78,15 +95,19 @@ uvicorn app.main:app --reload
 
 ---
 
-## 🛠️ Advanced CLI Usage
+## 🛠️ CLI Transcription Script Details
 
-Record from Chrome → transcribe → log every 30 seconds:
+The primary method for transcription is the following CLI script. It records audio in 30-second chunks, sends them to the local backend for transcription, logs the output, and saves it to a database.
 
 ```bash
 while true; do
   echo "$(date)" >> transcript.log
   ffmpeg -f avfoundation -i ":4" -ac 1 -ar 16000 -t 30 -filter:a "volume=10dB" -y chunk.wav -loglevel quiet
-  curl -s -X POST http://localhost:8000/transcribe -F "file=@chunk.wav"     | tee -a transcript.log     | jq -r .transcript     | python3 save_to_db.py "DirectTV"
+  curl -s -X POST http://localhost:8000/transcribe -F "file=@chunk.wav" \
+    | tee -a transcript.log \
+    | jq -r .transcript \
+    | python3 save_to_db.py "DirectTV" # Label for the transcript source
+  rm chunk.wav # Clean up the temporary audio file
   echo "---" >> transcript.log
 done
 ```
